@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benchmark Methodology Flowchart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #212529;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+        .flowchart-container {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* This centers all direct children, including arrows */
+        }
+        .node {
+            background-color: #ffffff;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            padding: 20px 25px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            width: 90%;
+            margin-bottom: 10px; /* Space before the arrow */
+        }
+        .node.start-end {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            font-weight: bold;
+            font-size: 50px; /* Larger font */
+            padding: 15px 25px;
+        }
+        .node.process {
+            background-color: #f1f3f5;
+        }
+        .node h3 {
+            margin: 0 0 15px 0;
+            color: #0056b3;
+            font-size: 2.5em; /* Larger font */
+        }
+        .node p {
+            margin: 8px 0;
+            line-height: 1.6;
+            font-size: 2.5em; /* Larger font */
+        }
+        .node em {
+            color: #495057;
+            font-size: 2.5em; /* Larger font */
+        }
+        .arrow {
+            width: 2px;
+            background-color: #adb5bd;
+            height: 40px;
+            position: relative;
+            margin-bottom: 10px; /* Space after the arrow */
+        }
+        .arrow::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 12px solid #adb5bd;
+        }
+        .loop-container {
+            border: 2px dashed #007bff;
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+            box-sizing: border-box;
+            margin: 10px 0;
+            background-color: rgba(0, 123, 255, 0.03);
+            /* The container itself uses flex to center its own children */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .loop-label {
+            font-weight: bold;
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 2.5em; /* Larger font */
+        }
+    </style>
+</head>
+<body>
+    <div class="flowchart-container">
+
+        <div class="node start-end">
+            Start: Project Setup
+        </div>
+        <div class="arrow"></div>
+
+        <div class="node process">
+            <h3>Environment & Database Selection</h3>
+            <p><strong>Hardware:</strong> Ryzen 5 5600, 32GB RAM</p>
+            <p><strong>Databases:</strong> MongoDB (NoSQL) & CockroachDB (NewSQL)</p>
+            <p><strong>Dataset:</strong> Amazon Fashion Dataset</p>
+            <p><strong>Clients:</strong> PyMongo (MongoDB) & Psycopg2 (CockroachDB)</p>
+        </div>
+        <div class="arrow"></div>
+
+        <div class="loop-container">
+            <div class="loop-label">Repeat for Each Database (MongoDB & CockroachDB)</div>
+            
+            <div class="node">
+                <h3>Benchmark 1: Data Manipulation</h3>
+                <p>Measure performance of INSERT, UPDATE, DELETE.</p>
+                <em>Data Size: 10k to 100k rows, in 10k increments.</em>
+            </div>
+            <div class="arrow"></div>
+
+            <div class="node">
+                <h3>Benchmark 2: Database Concurrency</h3>
+                <p>Measure response time as simultaneous queries increase.</p>
+                <em>Concurrency Level: 2 to 5 simultaneous queries.</em>
+            </div>
+            <div class="arrow"></div>
+
+            <div class="node">
+                <h3>Benchmark 3: Query Optimization (Indexing)</h3>
+                <p>Measure impact of an index on UPDATE performance.</p>
+                <em>Data Size: 10k to 100k rows, in 10k increments.</em>
+            </div>
+            <div class="arrow"></div>
+
+            <div class="node">
+                <h3>Benchmark 4: Resource Consumption</h3>
+                <p>Measure CPU & Memory usage during bulk operations.</p>
+                <em>Data Size: 10k to 100k rows, in 10k increments.</em>
+            </div>
+            <div class="arrow"></div>
+
+            <div class="node">
+                <h3>Benchmark 5: Access Control Complexity</h3>
+                <p>Measure p95 latency impact of roles under concurrent load.</p>
+                <em>Concurrency Level: 10, 50, 100, 500, 1000 users.</em>
+            </div>
+            <div class="arrow"></div>
+            
+            <div class="node">
+                <h3>Benchmark 6: Data Integrity Constraints</h3>
+                <p>Measure performance cost of enforcing data rules on INSERT.</p>
+                <em>Data Size: 10k to 100k rows, in 10k increments.</em>
+            </div>
+        </div>
+        <div class="arrow"></div>
+
+        <div class="node process">
+            <h3>Analysis & Visualization</h3>
+            <p>Record all execution times and resource metrics.</p>
+            <p>Generate line charts and tables to compare results.</p>
+            <p>Discuss findings and draw conclusions.</p>
+        </div>
+        <div class="arrow"></div>
+        
+        <div class="node start-end">
+            End
+        </div>
+
+    </div>
+</body>
+</html>
